@@ -1,43 +1,36 @@
-package com.application.newsapp.ui
+package com.application.newsapp.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.application.newsapp.R
 import com.application.newsapp.data.models.Articles
+import com.application.newsapp.data.models.Sources
 import com.bumptech.glide.Glide
 
-class RVAdapter(
-    private val list: List<Articles>,
+class NewsSourceRVAdapter(
+    private val list: List<Sources>,
     val context: Context,
-    private val onClickListener: (Articles) -> Unit
+    private val onClickListener: (Sources) -> Unit
 ) :
-    RecyclerView.Adapter<RVAdapter.ViewHolder>() {
+    RecyclerView.Adapter<NewsSourceRVAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val imageView: ImageView = itemView.findViewById(R.id.news_img)
-        private val header: TextView = itemView.findViewById(R.id.headline_text)
-        private val date: TextView = itemView.findViewById(R.id.date_text)
+        private val sourceText: TextView = itemView.findViewById(R.id.source_text)
 
-        fun bind(article: Articles) {
-            header.text = article.title
-            date.text = article.publishedAt
-
-            Glide.with(itemView.context)
-                .load(article.urlToImage)
-                .into(imageView)
-
+        fun bind(source: Sources) {
+            sourceText.text = source.name
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.news_item, parent, false)
+            .inflate(R.layout.source_item, parent, false)
 
         return ViewHolder(view)
     }
