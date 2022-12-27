@@ -13,7 +13,6 @@ object RetrofitClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(Constants.API_URL)
             .build()
-
         return retrofit.create(RetrofitApi::class.java)
     }
 
